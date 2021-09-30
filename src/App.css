@@ -43,9 +43,16 @@ div.ingredients {
   padding: 0.5em;
   border-radius: 10px;
   width: 20em;
+  border-style: solid;
+}
+
+div.ingredients-matching {
+  width: 30%;
+  display: inline-block;
 }
 
 svg {
-  position: absolute;
+  display: inline-block;
+  width: 20%;
   background-color: rgba(246, 240, 255, 0.671);
 }

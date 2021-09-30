@@ -39,12 +39,16 @@ class IngredientsMatch extends Component {
     return (
       <React.Fragment>
         <div>
-          <div style={{float: "left"}}>{a.map(i => <div>{i}</div>)}</div>
-          <div style={{float: "right"}}>{b.map(i => <div>{i}</div>)}</div>
-          <svg>
-            <line stroke-width="1px" stroke="#000000" x1="100" y1="5" x2="1000" y2="100"/>
-            <line stroke-width="1px" stroke="#000000" x1="100" y1="10" x2="1000" y2="5"/>
-          </svg>
+          <div>
+            <div className="ingredients-matching">{a.map(i => <div>{i}</div>)}</div>
+            <svg>
+              <line stroke-width="1px" stroke="#000000" x1="100" y1="5" x2="1000" y2="100"/>
+              <line stroke-width="1px" stroke="#000000" x1="100" y1="10" x2="1000" y2="5"/>
+            </svg>
+            <div className="ingredients-matching">{b.map(i => <div>{i}</div>)}</div>
+            
+          </div>
+          
           {matchingIndex.map(i => <div>{i}</div>)}
           
         </div>

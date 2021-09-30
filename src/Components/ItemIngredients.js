@@ -14,13 +14,13 @@ class ItemIngredients extends Component {
     for (let i = 0; i < flaggedItemsArray.length; i++) {
       if (thisItem.toLowerCase() == flaggedItemsArray[i].toLowerCase()) {
         //exact matches
-        return <div className="ingredients" style={{backgroundColor: "lightblue", borderColor: "red", borderStyle: "solid"}}>{thisItem}</div>;
+        return <div className="ingredients" style={{borderColor: "red"}}>{thisItem}</div>;
       } else if (thisItem.toLowerCase().includes(flaggedItemsArray[i].toLowerCase())) {
         //contains matching phrase
-        return <div className="ingredients" style={{backgroundColor: "yellow", borderColor: "orange", borderStyle: "solid"}}>{thisItem}</div>;
+        return <div className="ingredients" style={{borderColor: "orange"}}>{thisItem}</div>;
       }
     }
-    return <div className="ingredients">{thisItem}</div>;
+    return <div className="ingredients" style={{borderColor: "aliceblue"}}>{thisItem}</div>;
   }
 
   render() {
