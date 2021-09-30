@@ -6,10 +6,13 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      flaggedItems: ["Sodium Chloride", "Sodium Citrate", "Citric Acid"]
+      inputString: "",
+      flaggedItems: ["Sodium Chloride", "Sodium Citrate", "Citric Acid", "Sodium Laureth Sulfate"],
+      inputArray: []
     };
     this.itemFlagFormatter = this.itemFlagFormatter.bind(this);
     this.convertStringToArray = this.convertStringToArray.bind(this);
+    this.handleInput = this.handleInput.bind(this);
   }
 
 
@@ -33,20 +36,32 @@ class App extends Component {
     return trimmed;
   }
 
-  render() {
-    var sampleString = "Water, Petrolatum, Sodium Trideceth Sulfate, Mineral Oil/Huile Minerale, Sodium Chloride, Glycine Soja (Soybean) Oil, Cocamidopropyl Betaine, Fragrance/Parfum, Trideceth-3, Sodium Citrate, Guar Hydroxypropyltrimonium Chloride, Sodium Benzoate, Xanthan Gum, Citric Acid, Disodium Edta, Bht, Glyceryl Oleate, Acrylates/C10-30 Alkyl Acrylate Crosspolymer, Butyrospermum Parkii (Shea) Butter, Methylchloroisothiazolinone, Methylisothiazolinone, Green 6.";
-    var array = this.convertStringToArray(sampleString); 
-    
+  handleInput(event) {
+    this.setState({
+      inputString: event.target.value
+    });
+  }
 
+  render() {
     return (
       <React.Fragment>
         <div>Better Ingredient List</div>
-        <textarea name="ingredients-input" placeholder="paste the list of ingredients here"></textarea>
-        <button>better the labels</button>
+        <textarea 
+          name="ingredients-input" 
+          placeholder="paste the list of ingredients here"
+          onChange={this.handleInput}
+          ></textarea>
+        <button
+          onClick={() => {
+            this.setState({
+              inputArray: this.convertStringToArray(this.state.inputString)
+            });
+          }}
+          >better the labels</button>
         <textarea name="ingredients-input" placeholder="paste unwanted ingredients here"></textarea>
         <button>tag unwanted ingredients</button>
         <div>
-          {array.map((i) => this.itemFlagFormatter(i, this.state.flaggedItems)) }
+          {this.state.inputArray.map((i) => this.itemFlagFormatter(i, this.state.flaggedItems)) }
         </div>
       </React.Fragment>
     );
