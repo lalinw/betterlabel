@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+/* ========================================= */
+
+div.ingredients {
+  padding: 0.5em;
+  border-radius: 10px;
+  width: 20em;
+}
+
+svg {
+  position: absolute;
+  background-color: rgba(246, 240, 255, 0.671);
+}

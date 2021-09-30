@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import ItemIngredients from './Components/ItemIngredients';
+import IngredientsMatch from './Components/IngredientsMatch';
 
 class App extends Component {
   constructor() {
@@ -9,7 +10,7 @@ class App extends Component {
       inputString: "",
       inputArray: [],
       flaggedItemsString: "",
-      flaggedItemsArray: ["Sodium Chloride", "Sodium Citrate", "Citric Acid", "Sodium Laureth Sulfate", "Sodium Lauryl Sulfate", "fragrance"]
+      flaggedItemsArray: ["Sodium Chloride", "Sodium Citrate", "Citric Acid", "Sodium Laureth Sulfate", "Sodium Lauryl Sulfate", "fragrance", "oil", "extract"]
     };
     // this.itemFlagFormatter = this.itemFlagFormatter.bind(this);
     this.convertStringToArray = this.convertStringToArray.bind(this);
@@ -54,6 +55,7 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
+        <IngredientsMatch/>
         <div>Better Labels</div>
         <textarea 
           rows="8"

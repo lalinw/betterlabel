@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react';
+import './../App.css';
 
 class ItemIngredients extends Component {
   constructor(props) {
@@ -13,13 +14,13 @@ class ItemIngredients extends Component {
     for (let i = 0; i < flaggedItemsArray.length; i++) {
       if (thisItem.toLowerCase() == flaggedItemsArray[i].toLowerCase()) {
         //exact matches
-        return <div style={{backgroundColor: "lightblue", borderColor: "red", borderStyle: "solid"}}>{thisItem}</div>;
+        return <div className="ingredients" style={{backgroundColor: "lightblue", borderColor: "red", borderStyle: "solid"}}>{thisItem}</div>;
       } else if (thisItem.toLowerCase().includes(flaggedItemsArray[i].toLowerCase())) {
         //contains matching phrase
-        return <div style={{backgroundColor: "yellow", borderColor: "orange", borderStyle: "solid"}}>{thisItem}</div>;
+        return <div className="ingredients" style={{backgroundColor: "yellow", borderColor: "orange", borderStyle: "solid"}}>{thisItem}</div>;
       }
     }
-    return <div>{thisItem}</div>;
+    return <div className="ingredients">{thisItem}</div>;
   }
 
   render() {
