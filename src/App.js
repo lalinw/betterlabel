@@ -48,6 +48,7 @@ class App extends Component {
     this.setState({
       flaggedItemsString: event.target.value
     });
+    
   }
 
   render() {
@@ -55,7 +56,7 @@ class App extends Component {
       <React.Fragment>
         <div>Better Labels</div>
         <textarea 
-          rows="5"
+          rows="8"
           cols="80"
           name="ingredients-input" 
           placeholder="paste the list of ingredients here"
@@ -72,7 +73,7 @@ class App extends Component {
         <br/>
         <br/>
         <textarea 
-          rows="2"
+          rows="4"
           cols="80"
           name="ingredients-input" 
           placeholder="paste unwanted ingredients here"
@@ -81,9 +82,12 @@ class App extends Component {
           <br/>
         <button
           onClick={() => {
-            this.setState({
-              flaggedItemsArray: this.convertStringToArray(this.state.flaggedItemsString)
-            });
+            if (this.state.flaggedItemsString != "") {
+              this.setState({
+                flaggedItemsArray: this.convertStringToArray(this.state.flaggedItemsString)
+              });
+            }
+            
           }}
           >tag unwanted ingredients</button>
         <br/>

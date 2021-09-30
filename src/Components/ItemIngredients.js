@@ -12,7 +12,11 @@ class ItemIngredients extends Component {
   itemFlagFormatter(thisItem, flaggedItemsArray) {
     for (let i = 0; i < flaggedItemsArray.length; i++) {
       if (thisItem.toLowerCase() == flaggedItemsArray[i].toLowerCase()) {
+        //exact matches
         return <div style={{backgroundColor: "lightblue", borderColor: "red", borderStyle: "solid"}}>{thisItem}</div>;
+      } else if (thisItem.toLowerCase().includes(flaggedItemsArray[i].toLowerCase())) {
+        //contains matching phrase
+        return <div style={{backgroundColor: "yellow", borderColor: "orange", borderStyle: "solid"}}>{thisItem}</div>;
       }
     }
     return <div>{thisItem}</div>;
