@@ -15,7 +15,8 @@ class App extends Component {
       flaggedItemsString: "",
       flaggedItemsArray: [],
       pageTag: true,
-      pageMatch: false
+      pageMatch: false,
+      pageAbout: false
     };
     // this.itemFlagFormatter = this.itemFlagFormatter.bind(this);
     this.convertStringToArray = this.convertStringToArray.bind(this);
