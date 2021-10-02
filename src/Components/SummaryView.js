@@ -32,28 +32,26 @@ class SummaryView extends Component {
 
     return (
       <React.Fragment>
-        <div>
+        <div className="summary">
           <h3>Product Summary:</h3>
           {this.props.inputArray.length != 0
           ? 
           <React.Fragment>
-            <div className="summary-stats">
+            <div className="summary-stats" id="stats-input">
               <h3>Total ingredients</h3>
               <h2>{this.props.inputArray.length}</h2>
             </div>
-            <div className="summary-stats">
+            <div className="summary-stats" id="stats-wanted">
               <h3>Desired ingredients</h3>
               <h2>{wanted}</h2> 
               <p>out of {this.props.wantedItemsArray.length} found</p>
             </div>
-            <div className="summary-stats">
+            <div className="summary-stats" id="stats-flagged">
               <h3>Flagged ingredients</h3>
               <h2>{flagged}</h2>
               <p>out of {this.props.flaggedItemsArray.length} flagged</p>
               <p>({potentialFlag} potentially unwanted items)</p>
             </div>
-            
-            
           </React.Fragment>
           : <p>Summary cannot be displayed until there is an ingredients list.</p>
           }

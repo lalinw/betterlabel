@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import ItemIngredients from './Components/ItemIngredients';
 import IngredientsMatch from './Components/IngredientsMatch';
+import SummaryView from './Components/SummaryView';
 
 class App extends Component {
   constructor() {
@@ -82,13 +83,22 @@ class App extends Component {
         </div>
         <button
             onClick={() => {
-              this.setState({
-                inputArray: this.convertStringToArray(this.state.inputString),
-                wantedItemsArray: this.convertStringToArray(this.state.wantedItemsString),
-                flaggedItemsArray: this.convertStringToArray(this.state.flaggedItemsString)
-              });
+              if (this.state.inputString != "") {
+                this.setState({
+                  inputArray: this.convertStringToArray(this.state.inputString),
+                  wantedItemsArray: this.convertStringToArray(this.state.wantedItemsString),
+                  flaggedItemsArray: this.convertStringToArray(this.state.flaggedItemsString)
+                });
+              }
+              
             }}
             >Tag my Ingredients</button>
+        <br/>
+        <SummaryView
+          inputArray = {this.state.inputArray}
+          flaggedItemsArray = {this.state.flaggedItemsArray}
+          wantedItemsArray = {this.state.wantedItemsArray}
+          />
         <ItemIngredients
           inputArray = {this.state.inputArray}
           flaggedItemsArray = {this.state.flaggedItemsArray}

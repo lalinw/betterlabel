@@ -35,18 +35,39 @@ textarea {
 #input-flagged {
   width: 50%;
 }
-
-.summary-stats {
+.summary {
   display: inline-block;
   vertical-align: top;
+  padding: 2em;
+}
+
+.summary-stats {
+  /* vertical-align: top; */
   text-align: center;
-  width: calc(100% / 3);  
+  /* border-style: solid;
+  border-color: cadetblue; */
+  padding: 1em;
+  margin: 2em;
+}
+
+#stats-wanted {
+  background-color: rgba(113, 255, 57, 0.377);
+}
+
+#stats-flagged {
+  background: rgba(255, 71, 71, 0.274);
+}
+
+div#ingredients-list {
+  display: inline-block;
+  margin: 0.5em auto;
+  padding: 2em;
 }
 
 div.ingredients {
+  margin: 0.5em auto;
   text-align: center;
   padding: 0.2em;
-  margin: 0.5em;
   border-radius: 10px;
   width: 25em;
   border-style: solid;

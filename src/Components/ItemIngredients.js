@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import './../App.css';
-import SummaryView from './SummaryView';
+
 
 class ItemIngredients extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class ItemIngredients extends Component {
         if (thisItem.toLowerCase() == this.props.flaggedItemsArray[i].toLowerCase()) {
           //exact matches
           return <div className="ingredients flagged" style={{borderColor: "red"}}>{thisItem}</div>;
-        } else if (thisItem.toLowerCase().includes(this.props.flaggedItemsArray[i].toLowerCase())) {
+        } else if (this.props.flaggedItemsArray[i] != "" && thisItem.toLowerCase().includes(this.props.flaggedItemsArray[i].toLowerCase())) {
           //contains matching phrase
           return <div className="ingredients flagged" style={{borderColor: "orange"}}>{thisItem}</div>;
         } 
@@ -38,14 +38,7 @@ class ItemIngredients extends Component {
   render() {
     return (
       <React.Fragment>
-        <SummaryView
-          inputArray = {this.props.inputArray}
-          flaggedItemsArray = {this.props.flaggedItemsArray}
-          wantedItemsArray = {this.props.wantedItemsArray}
-          wantedItemsFound = {this.state.wantedItemsFound}
-          flaggedItemsFound = {this.state.flaggedItemsFound}
-          />
-        <div>
+        <div id="ingredients-list">
           {this.props.inputArray.map((i) => this.itemFlagFormatter(i))}
         </div>
         
