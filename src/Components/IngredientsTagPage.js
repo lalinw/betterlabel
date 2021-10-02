@@ -6,7 +6,7 @@ class IngredientsTagPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputString: "",
+      c: "",
       inputArray: [],
       wantedItemsString: "",
       wantedItemsArray: [],
