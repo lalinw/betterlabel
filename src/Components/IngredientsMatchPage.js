@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import './../App.css';
 
-class IngredientsMatch extends Component {
+class IngredientsMatchPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -58,4 +58,4 @@ class IngredientsMatch extends Component {
 }
 
 
-export default IngredientsMatch;
+export default IngredientsMatchPage;

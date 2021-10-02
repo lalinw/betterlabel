@@ -35,10 +35,14 @@ textarea {
 #input-flagged {
   width: 50%;
 }
+
+#result{
+  text-align: center;
+}
+
 .summary {
   display: inline-block;
   vertical-align: top;
-  padding: 2em;
 }
 
 .summary-stats {

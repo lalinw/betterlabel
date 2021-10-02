@@ -33,7 +33,6 @@ class SummaryView extends Component {
     return (
       <React.Fragment>
         <div className="summary">
-          <h3>Product Summary:</h3>
           {this.props.inputArray.length != 0
           ? 
           <React.Fragment>

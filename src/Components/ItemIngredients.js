@@ -38,10 +38,11 @@ class ItemIngredients extends Component {
   render() {
     return (
       <React.Fragment>
+        {this.props.inputArray != undefined && this.props.inputArray.length > 0 &&
         <div id="ingredients-list">
           {this.props.inputArray.map((i) => this.itemFlagFormatter(i))}
         </div>
-        
+        }
       </React.Fragment>
     );
   }
