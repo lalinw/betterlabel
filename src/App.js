@@ -9,24 +9,20 @@ class App extends Component {
     this.state = {
       inputString: "",
       inputArray: [],
+      wantedItemsString: "",
+      wantedItemsArray: [],
       flaggedItemsString: "",
-      flaggedItemsArray: ["Sodium Chloride", "Sodium Citrate", "Citric Acid", "Sodium Laureth Sulfate", "Sodium Lauryl Sulfate", "fragrance", "oil", "extract"]
+      flaggedItemsArray: [],
+      pageTag: true,
+      pageMatch: false
     };
     // this.itemFlagFormatter = this.itemFlagFormatter.bind(this);
     this.convertStringToArray = this.convertStringToArray.bind(this);
     this.handleInput = this.handleInput.bind(this);
-    this.handleFlaggedInput = this.handleFlaggedInput.bind(this);
+    this.handleWantedItems = this.handleWantedItems.bind(this);
+    this.handleFlaggedItems = this.handleFlaggedItems.bind(this);
   }
 
-
-  // itemFlagFormatter(thisItem, flaggedItems) {
-  //   for (let i = 0; i < flaggedItems.length; i++) {
-  //     if (thisItem.toLowerCase() == flaggedItems[i].toLowerCase()) {
-  //       return <div style={{backgroundColor: "lightblue", borderColor: "red", borderStyle: "solid"}}>{thisItem}</div>;
-  //     }
-  //   }
-  //   return <div>{thisItem}</div>;
-  // }
 
   convertStringToArray(listAsString) {
     var replaceFullstop = listAsString.replaceAll('.', ' ');
@@ -39,63 +35,64 @@ class App extends Component {
     return trimmed;
   }
 
+
   handleInput(event) {
-    this.setState({
-      inputString: event.target.value
-    });
+    this.setState({ inputString: event.target.value });
   }
 
-  handleFlaggedInput(event) {
-    this.setState({
-      flaggedItemsString: event.target.value
-    });
+
+  handleWantedItems(event) {
+    this.setState({ wantedItemsString: event.target.value });
     
   }
+
+
+  handleFlaggedItems(event) {
+    this.setState({ flaggedItemsString: event.target.value });
+  }
+
 
   render() {
     return (
       <React.Fragment>
-        <IngredientsMatch/>
+        {this.state.pageMatch && <IngredientsMatch/>}
+        
         <div>Better Labels</div>
-        <textarea 
-          rows="8"
-          cols="80"
-          name="ingredients-input" 
-          placeholder="paste the list of ingredients here"
-          onChange={this.handleInput}
-          ></textarea>
-          <br/>
+
+        <div className="input" id="input">
+          <textarea 
+            id="textarea-input"
+            placeholder="paste the list of ingredients here"
+            onChange={this.handleInput}
+            ></textarea>
+        </div>
+        <div className="input" id="input-wanted">
+          <textarea 
+            id="textarea-input-wanted"
+            placeholder="paste wanted ingredients here"
+            onChange={this.handleWantedItems}
+            ></textarea>
+        </div>
+        <div className="input" id="input-flagged">
+          <textarea 
+            id="textarea-input-flagged"
+            placeholder="paste unwanted ingredients here"
+            onChange={this.handleFlaggedItems}
+            ></textarea>
+        </div>
         <button
-          onClick={() => {
-            this.setState({
-              inputArray: this.convertStringToArray(this.state.inputString)
-            });
-          }}
-          >better the labels</button>
-        <br/>
-        <br/>
-        <textarea 
-          rows="4"
-          cols="80"
-          name="ingredients-input" 
-          placeholder="paste unwanted ingredients here"
-          onChange={this.handleFlaggedInput}
-          ></textarea>
-          <br/>
-        <button
-          onClick={() => {
-            if (this.state.flaggedItemsString != "") {
+            onClick={() => {
               this.setState({
+                inputArray: this.convertStringToArray(this.state.inputString),
+                wantedItemsArray: this.convertStringToArray(this.state.wantedItemsString),
                 flaggedItemsArray: this.convertStringToArray(this.state.flaggedItemsString)
               });
-            }
-            
-          }}
-          >tag unwanted ingredients</button>
-        <br/>
+            }}
+            >Tag my Ingredients</button>
         <ItemIngredients
           inputArray = {this.state.inputArray}
           flaggedItemsArray = {this.state.flaggedItemsArray}
+          wantedItemsArray = {this.state.wantedItemsArray}
         />
       </React.Fragment>
     );

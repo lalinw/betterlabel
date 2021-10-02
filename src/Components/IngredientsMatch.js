@@ -42,8 +42,8 @@ class IngredientsMatch extends Component {
           <div>
             <div className="ingredients-matching">{a.map(i => <div>{i}</div>)}</div>
             <svg>
-              <line stroke-width="1px" stroke="#000000" x1="100" y1="5" x2="1000" y2="100"/>
-              <line stroke-width="1px" stroke="#000000" x1="100" y1="10" x2="1000" y2="5"/>
+              <line stroke-width="2px" stroke="#000000" x1="100" y1="5" x2="1000" y2="100"/>
+              <line stroke-width="2px" stroke="#000000" x1="100" y1="10" x2="1000" y2="5"/>
             </svg>
             <div className="ingredients-matching">{b.map(i => <div>{i}</div>)}</div>
             
