@@ -1,6 +1,8 @@
 
 import React, { Component } from 'react';
+import Xarrow, {useXarrow, xarrowPropsType, Xwrapper} from 'react-xarrows';
 import './../App.css';
+
 
 class IngredientsMatchPage extends Component {
   constructor(props) {
@@ -15,6 +17,8 @@ class IngredientsMatchPage extends Component {
     this.itemFlagFormatter = this.itemFlagFormatter.bind(this);
     this.convertStringToArray = this.convertStringToArray.bind(this);
     this.drawLines = this.drawLines.bind(this);
+    this.handleLeftInput = this.handleLeftInput.bind(this);
+    this.handleRightInput = this.handleRightInput.bind(this);
   }
 
   componentDidMount() {
@@ -67,8 +71,10 @@ class IngredientsMatchPage extends Component {
   }
 
   render() {
-    var a = ["Sodium Chloride", "Sodium Citrate", "Citric Acid", "Sodium Laureth Sulfate", "Sodium Lauryl Sulfate", "fragrance"];
-    var b = ["Sodium Citrate", "Citric not Acid", "Sodium Lauryl Sulfate", "oil", "Sodium Chloride", "Sodium Laureth Sulfate"];
+    // var a = ["Sodium Chloride", "Sodium Citrate", "Citric Acid", "Sodium Laureth Sulfate", "Sodium Lauryl Sulfate", "fragrance"];
+    // var b = ["Sodium Citrate", "Citric not Acid", "Sodium Lauryl Sulfate", "oil", "Sodium Chloride", "Sodium Laureth Sulfate"];
+    var a = this.state.leftInputArray
+    var b = this.state.rightInputArray;
     var matchingIndex = [];
     for (var i = 0; i < a.length; i++) {
       matchingIndex[i] = -1; //defaults from no match
@@ -78,6 +84,26 @@ class IngredientsMatchPage extends Component {
         }
       }
     }
+
+    const canvasStyle = {
+      position: 'relative',
+      height: '20vh',
+      background: 'white',
+      // display: 'flex',
+      // justifyContent: 'space-evenly',
+      // alignItems: 'center',
+    };
+    
+    const boxStyle = {
+      position: 'relative',
+      border: '1px #999 solid',
+      borderRadius: '10px',
+      textAlign: 'center',
+      width: '100px',
+      height: '30px',
+      color: 'black',
+    };
+
 
     return (
       <React.Fragment>
@@ -110,17 +136,35 @@ class IngredientsMatchPage extends Component {
           >Match product ingredients</button>
 
           <div>
-            <div className="ingredients-matching" id="start" >{a.map(i => <div className="ingredients">{i}</div>)}</div>
-            <svg>
-              <line stroke-width="2px" stroke="#000000" x1="100" y1="5" x2="1000" y2="100"/>
-              <line stroke-width="2px" stroke="#000000" x1="100" y1="10" x2="1000" y2="5"/>
-            </svg>
-            <div className="ingredients-matching" id="destination" >{b.map(i => <div className="ingredients">{i}</div>)}</div>
+            <div className="ingredients-matching" id="left" >
+              {a.map((key, index) => <div className="ingredients" id={"left" + index} >{key}</div>)}
+            </div>
+
+            {/* TODO: Insert the lines after both div sides have been drawn */}
+            <div className="ingredients-matching" style={canvasStyle} id="canvas">
+              {matchingIndex.map((key, index) => {
+                if (key !== -1) {
+                  return <Xarrow start={"left" + index} end={"right" + key} 
+                            curveness="0" 
+                            color="cornflowerblue"
+                            strokeWidth="2"
+                            showHead="false"
+                            headSize="0"
+                          />;
+                }
+                
+              })}
+            </div>
             
+            <div className="ingredients-matching" id="right" >
+              {b.map((key, index) => <div className="ingredients" id={"right" + index} >{key}</div>)}
+            </div>
           </div>
           
-          {matchingIndex.map(i => <div>{i}</div>)}
-          
+          {/* {matchingIndex.map(i => <div>{i}</div>)} */}
+
+
+
         </div>
       </React.Fragment>
     );
