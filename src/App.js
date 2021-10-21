@@ -8,22 +8,21 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      pageTag: false,
+      pageTag: true,
       pageMatch: true,
       pageAbout: false
     };
   }
 
-
   render() {
+    
     return (
       <React.Fragment>
         <div>Better Labels</div>
         {this.state.pageTag && <IngredientsTagPage/>}
         {this.state.pageMatch && <IngredientsMatchPage/>}
         {this.state.pageAbout && <AboutPage/>}
-        
-        
+
       </React.Fragment>
     );
   }

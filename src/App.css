@@ -78,12 +78,7 @@ div.ingredients {
 }
 
 div.ingredients-matching {
+  vertical-align: top;
   width: 30%;
   display: inline-block;
-}
-
-svg {
-  display: inline-block;
-  width: 20%;
-  background-color: rgba(246, 240, 255, 0.671);
 }
