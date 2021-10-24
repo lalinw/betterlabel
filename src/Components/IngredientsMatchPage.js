@@ -85,26 +85,6 @@ class IngredientsMatchPage extends Component {
       }
     }
 
-    const canvasStyle = {
-      position: 'relative',
-      height: '20vh',
-      background: 'white',
-      // display: 'flex',
-      // justifyContent: 'space-evenly',
-      // alignItems: 'center',
-    };
-    
-    const boxStyle = {
-      position: 'relative',
-      border: '1px #999 solid',
-      borderRadius: '10px',
-      textAlign: 'center',
-      width: '100px',
-      height: '30px',
-      color: 'black',
-    };
-
-
     return (
       <React.Fragment>
         <div>
@@ -141,7 +121,7 @@ class IngredientsMatchPage extends Component {
             </div>
 
             {/* TODO: Insert the lines after both div sides have been drawn */}
-            <div className="ingredients-matching" style={canvasStyle} id="canvas">
+            <div className="ingredients-matching" id="canvas">
               {matchingIndex.map((key, index) => {
                 if (key !== -1) {
                   return <Xarrow start={"left" + index} end={"right" + key} 
