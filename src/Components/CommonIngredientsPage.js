@@ -161,7 +161,7 @@ class CommonIngredientsPage extends Component {
   displayItem = (item) => {
 
     return (
-      <div id={item.name} className="commonIngredientItem">
+      <div key={item.name} className="commonIngredientItem">
         <div>{item.name}</div>
         {/* <div>[{item.ingredients.join(", ")}]</div> */}
       </div>

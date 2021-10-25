@@ -14,7 +14,7 @@ class AboutPage extends Component {
       <React.Fragment>
         <h2>Welcome to BetterLabel™!</h2>
         <p>BetterLabel™ is here to help reading labels easier than before.</p>
-        <p>
+        <div>
           BetterLabel™ can help you:
           <ul>
             <li><strong>tag wanted and unwanted ingredients</strong> from an ingredients list</li>
@@ -23,7 +23,7 @@ class AboutPage extends Component {
           </ul>
           <br/>
           See the FAQ section on how to use BetterLabel™ 😊
-        </p>
+        </div>
 
         <div>
           Q. How do I tag ingredients from a list?

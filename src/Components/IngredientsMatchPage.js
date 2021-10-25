@@ -89,16 +89,16 @@ class IngredientsMatchPage extends Component {
       <React.Fragment>
         <div>
           
-        <div>  
+        <div className="itemmMatch-input">  
           <textarea 
-              id="item-left"
+              id="itemmMatch-left"
               placeholder="paste the list of ingredients here"
               onChange={this.handleLeftInput}
               ></textarea>
         </div>
-        <div>
+        <div className="itemmMatch-input">
           <textarea 
-            id="item-right"
+            id="itemmMatch-right"
             placeholder="paste the list of ingredients here"
             onChange={this.handleRightInput}
             ></textarea>
