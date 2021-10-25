@@ -33,33 +33,35 @@ class CommonIngredientsPage extends Component {
           "ingredient_e"
         ]
       }],
-      map: null
+      map: new Map(),
+      input: "",
+      inputName: ""
     };
   }
 
-  
 
   findCommonIngredients = () => {
     var commonIngredientsMap = new Map();
-
-    // TODO: tally up most common ingredients, count occurrences as values
     this.state.items.forEach(item => {
       var keys = item.ingredients;
       keys.forEach(key => {
         if (commonIngredientsMap.has(key)) {
-          var currentCount = commonIngredientsMap.get(key);
-          commonIngredientsMap.set(key, currentCount + 1);
+          var nameArray = commonIngredientsMap.get(key);
+          nameArray.push(item.name);
+          commonIngredientsMap.set(key, nameArray);
         } else {
-          commonIngredientsMap.set(key, 1);
+          commonIngredientsMap.set(key, [item.name]);
         }
       })
     })
     // sort by descending value
-    const commonIngredientsMapSorted = new Map([...commonIngredientsMap.entries()].sort((a, b) => b[1] - a[1]));
+    const commonIngredientsMapSorted = new Map(
+      [...commonIngredientsMap.entries()].sort((a, b) => b[1].length - a[1].length)
+    );
     console.log(commonIngredientsMapSorted);
-
     this.setState({ map: commonIngredientsMapSorted });
   }
+
 
   convertStringToArray = (listAsString) => {
     var replaceFullstop = listAsString.replaceAll('.', ' ');
@@ -72,8 +74,9 @@ class CommonIngredientsPage extends Component {
     return trimmed;
   }
 
+
   //TODO: update to display for this component
-  itemFlagFormatter(thisItem) {
+  itemFlagFormatter = (thisItem) => {
     if (this.props.flaggedItemsArray !== undefined) {
       for (let i = 0; i < this.props.flaggedItemsArray.length; i++) {
         if (thisItem.toLowerCase() == this.props.flaggedItemsArray[i].toLowerCase()) {
@@ -115,25 +118,54 @@ class CommonIngredientsPage extends Component {
   }
 
 
+  addItem = () => {
+    var itemName = this.state.inputName; 
+    var ingredientsArray = this.convertStringToArray(this.state.input);
+    const newItem = {
+      name: itemName,
+      ingredients: ingredientsArray
+    };
 
+    //TODO: clear the input and textarea
+
+    //TODO: add item to the state items 
+
+  }
+
+
+  handleInput = (event) => {
+    this.setState({ input: event.target.value });
+  }
+
+
+  handleInputName = (event) => {
+    this.setState({ inputName: event.target.value });
+  }
+
+  
   render() {
     return (
       <React.Fragment>
         <div>
+          {this.state.items.map(item => item.name).join(", ")}
+        </div>
+
+        <div>
         <input
           placeholder="item name"
+          onChange={this.handleInputName}
           ></input>
         <textarea 
           id="textarea-input"
           placeholder="place list of ingredients"
           onChange={this.handleInput}
           ></textarea>
-        <button onClick={() => {
-          this.findCommonIngredients();
-        }}>Add this Item</button>
+        <button 
+          onClick={this.addItem}
+          >Add this Item</button>
         </div>
         
-        <div>{this.state.map}</div>
+        <div>show results here</div>
 
         <div>
           this is the common ingredients page
