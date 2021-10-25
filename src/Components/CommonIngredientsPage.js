@@ -60,6 +60,8 @@ class CommonIngredientsPage extends Component {
     );
     console.log(commonIngredientsMapSorted);
     this.setState({ map: commonIngredientsMapSorted });
+
+    console.log(this.state.items);
   }
 
 
@@ -119,17 +121,30 @@ class CommonIngredientsPage extends Component {
 
 
   addItem = () => {
-    var itemName = this.state.inputName; 
-    var ingredientsArray = this.convertStringToArray(this.state.input);
-    const newItem = {
-      name: itemName,
-      ingredients: ingredientsArray
-    };
+    if (this.state.inputName !== "" && this.state.input !== "") {
+      var itemName = this.state.inputName; 
+      var ingredientsArray = this.convertStringToArray(this.state.input);
+      const newItem = {
+        name: itemName,
+        ingredients: ingredientsArray
+      };
 
-    //TODO: clear the input and textarea
+      //TODO: clear the input and textarea
+      document.getElementById("commoningredients-name").value = '';
+      document.getElementById("commoningredients-input").value = '';
 
-    //TODO: add item to the state items 
+      //TODO: add item to the state items 
+      this.setState( prevState => ({ 
+        items: [...prevState.items, newItem]
+      }));
+    } else {
+      alert("Please input name AND ingredients list to add item");
+    }
+    
+  }
 
+  deleteItem = (itemName) => {
+    
   }
 
 
@@ -143,20 +158,31 @@ class CommonIngredientsPage extends Component {
   }
 
   
+  displayItem = (item) => {
+
+    return (
+      <div id={item.name} className="commonIngredientItem">
+        <div>{item.name}</div>
+        {/* <div>[{item.ingredients.join(", ")}]</div> */}
+      </div>
+    );
+  }
+
   render() {
     return (
       <React.Fragment>
         <div>
-          {this.state.items.map(item => item.name).join(", ")}
+          {this.state.items.map((item) => this.displayItem(item))}
         </div>
-
+          
         <div>
         <input
+          id="commoningredients-name"
           placeholder="item name"
           onChange={this.handleInputName}
           ></input>
         <textarea 
-          id="textarea-input"
+          id="commoningredients-input"
           placeholder="place list of ingredients"
           onChange={this.handleInput}
           ></textarea>
@@ -168,7 +194,6 @@ class CommonIngredientsPage extends Component {
         <div>show results here</div>
 
         <div>
-          this is the common ingredients page
           <button onClick={() => {
             this.findCommonIngredients();
           }}>find common ingredients</button>

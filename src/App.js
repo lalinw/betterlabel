@@ -9,10 +9,10 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      pageAbout: false,
-      pageTag: true,
-      pageMatch: true,
-      pageCommon: true      
+      pageAbout: true,
+      pageTag: false,
+      pageMatch: false,
+      pageCommon: false      
     };
   }
 
@@ -29,21 +29,29 @@ class App extends Component {
     
     return (
       <React.Fragment>
-        <div>Better Labels</div>
+        <div><h1>BetterLabel™</h1></div>
         <div id="">
-          <button onClick={() => {
+          <button 
+            disabled={this.state.pageAbout}
+            onClick={() => {
             this.pageDisplayReset();
             this.setState({ pageAbout: true });
           }}>About</button>
-          <button onClick={() => {
+          <button 
+            disabled={this.state.pageTag}
+            onClick={() => {
             this.pageDisplayReset();
             this.setState({ pageTag: true });
           }}>Tag my Ingredients</button>
-          <button onClick={() => {
+          <button 
+            disabled={this.state.pageMatch}
+            onClick={() => {
             this.pageDisplayReset();
             this.setState({ pageMatch: true });
           }}>Compare Products</button>
-          <button onClick={() => {
+          <button 
+            disabled={this.state.pageCommon}
+            onClick={() => {
             this.pageDisplayReset();
             this.setState({ pageCommon: true });
           }}>Find Common Ingredients</button>

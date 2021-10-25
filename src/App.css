@@ -82,3 +82,11 @@ div.ingredients-matching {
   width: 30%;
   display: inline-block;
 }
+
+div.commonIngredientItem {
+  display: inline-block;
+  margin: 1em;
+  padding: 1em;
+  width: 20em;
+  background-color: bisque;
+}

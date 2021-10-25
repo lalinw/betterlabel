@@ -22,10 +22,10 @@ class IngredientsMatchPage extends Component {
   }
 
   componentDidMount() {
-    this.setState({ 
-      leftInputArray: ["Sodium Chloride", "Sodium Citrate", "Citric Acid", "Sodium Laureth Sulfate", "Sodium Lauryl Sulfate", "fragrance"],
-      rightInputArray: ["Sodium Citrate", "Citric not Acid", "Sodium Lauryl Sulfate", "oil", "Sodium Chloride", "Sodium Laureth Sulfate"]
-    });
+    // this.setState({ 
+    //   leftInputArray: ["Sodium Chloride", "Sodium Citrate", "Citric Acid", "Sodium Laureth Sulfate", "Sodium Lauryl Sulfate", "fragrance"],
+    //   rightInputArray: ["Sodium Citrate", "Citric not Acid", "Sodium Lauryl Sulfate", "oil", "Sodium Chloride", "Sodium Laureth Sulfate"]
+    // });
   }
 
   itemFlagFormatter(thisItem, flaggedItemsArray) {
@@ -128,7 +128,7 @@ class IngredientsMatchPage extends Component {
                             curveness="0" 
                             color="cornflowerblue"
                             strokeWidth="2"
-                            showHead="false"
+                            showHead={false}
                             headSize="0"
                           />;
                 }
