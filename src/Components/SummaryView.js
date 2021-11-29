@@ -17,12 +17,12 @@ class SummaryView extends Component {
 
     for (let i = 0; i < this.props.inputArray.length; i++) {
       for (let j = 0; j < this.props.wantedItemsArray.length; j++) {
-        if (this.props.inputArray[i].toLowerCase() == (this.props.wantedItemsArray[j].toLowerCase())) {
+        if (this.props.inputArray[i].toLowerCase() === (this.props.wantedItemsArray[j].toLowerCase())) {
           wanted++;
         }
       }
       for (let j = 0; j < this.props.flaggedItemsArray.length; j++) {
-        if (this.props.inputArray[i].toLowerCase() == (this.props.flaggedItemsArray[j].toLowerCase())) {
+        if (this.props.inputArray[i].toLowerCase() === (this.props.flaggedItemsArray[j].toLowerCase())) {
           flagged++;
         } else if (this.props.inputArray[i].toLowerCase().includes(this.props.flaggedItemsArray[j].toLowerCase())) {
           potentialFlag++;
@@ -33,7 +33,7 @@ class SummaryView extends Component {
     return (
       <React.Fragment>
         <div className="summary">
-          {this.props.inputArray.length != 0
+          {this.props.inputArray.length !== 0
           ? 
           <React.Fragment>
             <div className="summary-stats" id="stats-input">

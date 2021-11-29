@@ -9,31 +9,8 @@ class CommonIngredientsPage extends Component {
     this.state = {
       //items: [{}]
       // {name: "", ingredients: [a, b, c...]}
-      items: [{
-        name: "sample item",
-        ingredients: [
-          "ingredient_a",
-          "ingredient_b",
-          "ingredient_c",
-          "ingredient_d"
-        ]
-      }, {
-        name: "sample item 2",
-        ingredients: [
-          "ingredient_d",
-          "ingredient_e",
-          "ingredient_f",
-          "ingredient_g"
-        ]
-      }, {
-        name: "sample item 3",
-        ingredients: [
-          "ingredient_c",
-          "ingredient_d",
-          "ingredient_e"
-        ]
-      }],
-      map: new Map(),
+      items: [],
+      ingredientsMap: new Map(),
       input: "",
       inputName: ""
     };
@@ -59,12 +36,12 @@ class CommonIngredientsPage extends Component {
       [...commonIngredientsMap.entries()].sort((a, b) => b[1].length - a[1].length)
     );
     console.log(commonIngredientsMapSorted);
-    this.setState({ map: commonIngredientsMapSorted });
+    this.setState({ ingredientsMap: commonIngredientsMapSorted });
 
-    console.log(this.state.items);
+    this.state.ingredientsMap.forEach((item) => console.log(this.state.ingredientsMap.get(item.key)));
   }
 
-
+ 
   convertStringToArray = (listAsString) => {
     var replaceFullstop = listAsString.replaceAll('.', ' ');
     var split = replaceFullstop.split(","); 
@@ -77,43 +54,38 @@ class CommonIngredientsPage extends Component {
   }
 
 
-  //TODO: update to display for this component
-  itemFlagFormatter = (thisItem) => {
-    if (this.props.flaggedItemsArray !== undefined) {
-      for (let i = 0; i < this.props.flaggedItemsArray.length; i++) {
-        if (thisItem.toLowerCase() == this.props.flaggedItemsArray[i].toLowerCase()) {
-          //exact matches
-          return (
-            <div className="ingredients flagged" style={{borderColor: "red"}}>
-              {thisItem}
-            </div>
-          );
-        } else if 
-              (this.props.flaggedItemsArray[i] != "" 
-              && thisItem.toLowerCase().includes(this.props.flaggedItemsArray[i].toLowerCase()) ) {
-          //contains matching phrase
-          return (
-            <div className="ingredients flagged" style={{borderColor: "orange"}}>
-              {thisItem}
-            </div>
-          );
-        } 
-      }
-    }
-    if (this.props.wantedItemsArray !== undefined) { 
-      for (let i = 0; i < this.props.wantedItemsArray.length; i++) {
-        if (thisItem.toLowerCase() == (this.props.wantedItemsArray[i].toLowerCase())) {
-          //exact matches
-          return (
-            <div className="ingredients wanted" style={{borderColor: "green"}}>
-              {thisItem}
-            </div>
-          );
-        }
-      }
-    }
+  commonIngredientsFormatter = (thisItem) => {
+    //color in rgb() format
+    const startColor = [255,255,255]; // color for least common
+    const endColor = [31,147,213]; // color for most common
+    var RGBdiff = [
+      endColor[0] - startColor[0],
+      endColor[1] - startColor[1],
+      endColor[2] - startColor[2]
+    ];
+    
+    var stepsInt = this.state.items.length; //the number of steps in the gradient
+    var stepsPerc = 100 / (stepsInt); //the percentage representation of the step
+
+    var i = this.state.ingredientsMap.get(thisItem).length;
+    var rValue = (RGBdiff[0] > 0) 
+    ? Math.round(RGBdiff[0] / 100 * (stepsPerc * (i - 1)))
+    : Math.round((startColor[0] + (RGBdiff[0]) / 100 * (stepsPerc * (i - 1))));
+    
+    var gValue = (RGBdiff[1] > 0) 
+      ? Math.round(RGBdiff[1] / 100 * (stepsPerc * (i - 1))) 
+      : Math.round((startColor[1] + (RGBdiff[1]) / 100 * (stepsPerc * (i - 1))));
+      
+    var bValue = (RGBdiff[2] > 0) 
+      ? Math.round(RGBdiff[2] / 100 * (stepsPerc * (i - 1))) 
+      : Math.round((startColor[2] + (RGBdiff[2]) / 100 * (stepsPerc * (i - 1))));
+    
+    console.log(rValue + "-" + gValue + "-" + bValue);
+    var colorRGB = "rgb(" + rValue + ',' + gValue + ',' + bValue + ")";
+    console.log(colorRGB);
+
     return (
-      <div className="ingredients" style={{borderColor: "aliceblue"}}>
+      <div className="ingredients commontooltip" style={{borderColor: "aliceblue", backgroundColor: colorRGB, width: "30em"}} title={i + " source item(s): " + this.state.ingredientsMap.get(thisItem).join(', ')}>
         {thisItem}
       </div>
     );
@@ -129,22 +101,29 @@ class CommonIngredientsPage extends Component {
         ingredients: ingredientsArray
       };
 
-      //TODO: clear the input and textarea
       document.getElementById("commoningredients-name").value = '';
       document.getElementById("commoningredients-input").value = '';
 
-      //TODO: add item to the state items 
       this.setState( prevState => ({ 
         items: [...prevState.items, newItem]
-      }));
+      }), () => {
+        this.findCommonIngredients()
+      });
     } else {
       alert("Please input name AND ingredients list to add item");
     }
     
   }
 
-  deleteItem = (itemName) => {
-    
+  deleteItem = (event) => {
+    var itemToDelete = event.currentTarget.value;
+    // console.log(itemToDelete);
+    const newItemArray = this.state.items.filter((thisItem) => thisItem.name !== itemToDelete);
+    this.setState({ 
+      items: newItemArray 
+    }, () => {
+      this.findCommonIngredients()
+    });
   }
 
 
@@ -159,16 +138,18 @@ class CommonIngredientsPage extends Component {
 
   
   displayItem = (item) => {
-
     return (
       <div key={item.name} className="commonIngredientItem">
         <div>{item.name}</div>
         {/* <div>[{item.ingredients.join(", ")}]</div> */}
+        <button value={item.name} onClick={this.deleteItem}>delete</button>
       </div>
     );
   }
 
   render() {
+    let mapKeys = Array.from( this.state.ingredientsMap.keys() );
+
     return (
       <React.Fragment>
         <div>
@@ -176,27 +157,33 @@ class CommonIngredientsPage extends Component {
         </div>
           
         <div>
-        <input
-          id="commoningredients-name"
-          placeholder="item name"
-          onChange={this.handleInputName}
-          ></input>
-        <textarea 
-          id="commoningredients-input"
-          placeholder="place list of ingredients"
-          onChange={this.handleInput}
-          ></textarea>
-        <button 
-          onClick={this.addItem}
-          >Add this Item</button>
+          <input
+            id="commoningredients-name"
+            placeholder="item name"
+            onChange={this.handleInputName}
+            ></input>
+          <textarea 
+            id="commoningredients-input"
+            placeholder="place list of ingredients"
+            onChange={this.handleInput}
+            ></textarea>
+          <button 
+            onClick={this.addItem}
+            >Add this Item</button>
         </div>
         
-        <div>show results here</div>
+        <div className="result">
+          <h3>Common ingredients in descending order:</h3>
+          {this.state.items.length !== 0
+            ? <p>hover on each ingredient to see source item(s)</p>
+            : <p><i>no ingredients to display</i></p>
+          }
+          {this.state.ingredientsMap.length !== 0 &&
+          mapKeys.map((item) => this.commonIngredientsFormatter(item))}
+        </div>
 
         <div>
-          <button onClick={() => {
-            this.findCommonIngredients();
-          }}>find common ingredients</button>
+          <button onClick={this.findCommonIngredients}>find common ingredients</button>
         </div>
       </React.Fragment>
     );

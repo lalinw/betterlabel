@@ -74,7 +74,7 @@ class IngredientsTagPage extends Component {
       </div>
       <button
           onClick={() => {
-            if (this.state.inputString != "") {
+            if (this.state.inputString !== "") {
               this.setState({
                 inputArray: this.convertStringToArray(this.state.inputString),
                 wantedItemsArray: this.convertStringToArray(this.state.wantedItemsString),
@@ -84,7 +84,7 @@ class IngredientsTagPage extends Component {
             
           }}
           >Tag my Ingredients</button>
-      <div id="result">
+      <div className="result">
         <h3>Product Summary:</h3>
         <SummaryView
           inputArray = {this.state.inputArray}

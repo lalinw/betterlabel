@@ -36,7 +36,7 @@ textarea {
   width: 50%;
 }
 
-#result{
+div.result{
   text-align: center;
 }
 

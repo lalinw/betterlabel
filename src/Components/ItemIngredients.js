@@ -14,10 +14,10 @@ class ItemIngredients extends Component {
   itemFlagFormatter(thisItem) {
     if (this.props.flaggedItemsArray !== undefined) {
       for (let i = 0; i < this.props.flaggedItemsArray.length; i++) {
-        if (thisItem.toLowerCase() == this.props.flaggedItemsArray[i].toLowerCase()) {
+        if (thisItem.toLowerCase() === this.props.flaggedItemsArray[i].toLowerCase()) {
           //exact matches
           return <div className="ingredients flagged" style={{borderColor: "red"}}>{thisItem}</div>;
-        } else if (this.props.flaggedItemsArray[i] != "" && thisItem.toLowerCase().includes(this.props.flaggedItemsArray[i].toLowerCase())) {
+        } else if (this.props.flaggedItemsArray[i] !== "" && thisItem.toLowerCase().includes(this.props.flaggedItemsArray[i].toLowerCase())) {
           //contains matching phrase
           return <div className="ingredients flagged" style={{borderColor: "orange"}}>{thisItem}</div>;
         } 
@@ -25,7 +25,7 @@ class ItemIngredients extends Component {
     }
     if (this.props.wantedItemsArray !== undefined) { 
       for (let i = 0; i < this.props.wantedItemsArray.length; i++) {
-        if (thisItem.toLowerCase() == (this.props.wantedItemsArray[i].toLowerCase())) {
+        if (thisItem.toLowerCase() === (this.props.wantedItemsArray[i].toLowerCase())) {
           //exact matches
           return <div className="ingredients wanted" style={{borderColor: "green"}}>{thisItem}</div>;
         }
@@ -38,7 +38,7 @@ class ItemIngredients extends Component {
   render() {
     return (
       <React.Fragment>
-        {this.props.inputArray != undefined && this.props.inputArray.length > 0 &&
+        {this.props.inputArray !== undefined && this.props.inputArray.length > 0 &&
         <div id="ingredients-list">
           {this.props.inputArray.map((i) => this.itemFlagFormatter(i))}
         </div>

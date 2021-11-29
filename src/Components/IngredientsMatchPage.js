@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import Xarrow, {useXarrow, xarrowPropsType, Xwrapper} from 'react-xarrows';
+import Xarrow from 'react-xarrows';
 import './../App.css';
 
 
@@ -30,7 +30,7 @@ class IngredientsMatchPage extends Component {
 
   itemFlagFormatter(thisItem, flaggedItemsArray) {
     for (let i = 0; i < flaggedItemsArray.length; i++) {
-      if (thisItem.toLowerCase() == flaggedItemsArray[i].toLowerCase()) {
+      if (thisItem.toLowerCase() === flaggedItemsArray[i].toLowerCase()) {
         //exact matches
         return <div style={{backgroundColor: "lightblue", borderColor: "red", borderStyle: "solid"}}>{thisItem}</div>;
       } else if (thisItem.toLowerCase().includes(flaggedItemsArray[i].toLowerCase())) {
@@ -79,7 +79,7 @@ class IngredientsMatchPage extends Component {
     for (var i = 0; i < a.length; i++) {
       matchingIndex[i] = -1; //defaults from no match
       for (var j = 0; j < b.length; j++) {
-        if (a[i].toLowerCase() == b[j].toLowerCase()) {
+        if (a[i].toLowerCase() === b[j].toLowerCase()) {
           matchingIndex[i] = j;
         }
       }
@@ -105,7 +105,7 @@ class IngredientsMatchPage extends Component {
         </div>
         <button
           onClick={() => {
-            if (this.state.leftInputString != "" && this.state.rightInputString) {
+            if (this.state.leftInputString !== "" && this.state.rightInputString) {
               this.setState({
                 leftInputArray: this.convertStringToArray(this.state.leftInputString),
                 rightInputArray: this.convertStringToArray(this.state.rightInputString)
@@ -132,7 +132,7 @@ class IngredientsMatchPage extends Component {
                             headSize="0"
                           />;
                 }
-                
+                return 0;
               })}
             </div>
             
