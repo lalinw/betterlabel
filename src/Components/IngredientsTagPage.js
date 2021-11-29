@@ -58,14 +58,14 @@ class IngredientsTagPage extends Component {
         onChange={this.handleInput}
         ></textarea>
       </div>
-      <div className="input" id="input-wanted">
+      <div className="input-split" id="input-wanted">
         <textarea 
           id="textarea-input-wanted"
           placeholder="paste wanted ingredients here"
           onChange={this.handleWantedItems}
           ></textarea>
       </div>
-      <div className="input" id="input-flagged">
+      <div className="input-split" id="input-flagged">
         <textarea 
           id="textarea-input-flagged"
           placeholder="paste unwanted ingredients here"
