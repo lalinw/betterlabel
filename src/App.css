@@ -89,9 +89,10 @@ div.input-split {
 }
 
 div.commonIngredientItem {
-  display: inline-block;
+  display: block;
   margin: 1em;
-  padding: 1em;
+  padding: 1em 2em;
   width: 20em;
-  background-color: bisque;
+  background-color: #ffe786;
+  border-radius: 10px;
 }

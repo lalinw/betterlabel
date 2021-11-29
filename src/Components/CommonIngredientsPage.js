@@ -140,9 +140,13 @@ class CommonIngredientsPage extends Component {
   displayItem = (item) => {
     return (
       <div key={item.name} className="commonIngredientItem">
-        <div>{item.name}</div>
+        <div>
+          {item.name}
+          <button value={item.name} onClick={this.deleteItem}>delete</button>
+        </div>
+        
         {/* <div>[{item.ingredients.join(", ")}]</div> */}
-        <button value={item.name} onClick={this.deleteItem}>delete</button>
+        
       </div>
     );
   }
