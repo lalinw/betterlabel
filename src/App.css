@@ -19,6 +19,9 @@ textarea {
   background-color: rgba(255, 71, 71, 0.274);
 }
 
+#content{
+  margin: 3em 0em;
+}
 
 .input {
   display: inline-block;

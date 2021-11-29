@@ -56,11 +56,12 @@ class App extends Component {
             this.setState({ pageCommon: true });
           }}>Find Common Ingredients</button>
         </div>
-        {this.state.pageAbout && <AboutPage/>}
-        {this.state.pageTag && <IngredientsTagPage/>}
-        {this.state.pageMatch && <IngredientsMatchPage/>}
-        {this.state.pageCommon && <CommonIngredientsPage/>}
-
+        <div id="content">
+          {this.state.pageAbout && <AboutPage/>}
+          {this.state.pageTag && <IngredientsTagPage/>}
+          {this.state.pageMatch && <IngredientsMatchPage/>}
+          {this.state.pageCommon && <CommonIngredientsPage/>}
+        </div>
       </React.Fragment>
     );
   }
