@@ -26,6 +26,11 @@ class AboutPage extends Component {
         </div>
 
         <div>
+          Q. Is my data being sent anywhere?
+          <br/>
+          A. No. BetterLabel™ is a client-based website developed using ReactJS. The calculations are all made on your browser, so no data is being exchanged to any remote server.
+          <br/>
+          <br/>
           Q. How do I tag ingredients from a list?
           <br/>
           A. (pic + explanation)
@@ -40,12 +45,6 @@ class AboutPage extends Component {
           <br/>
           A. (pic + explanation)
           <br/>
-          <br/>
-          Q. Is my data being sent anywhere?
-          <br/>
-          A. No. BetterLabel™ is a client-based website developed using ReactJS. The calculations are all made on your browser, so no data is being exchanged to any remote server.
-          <br/>
-
 
         </div>
         
