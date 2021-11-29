@@ -89,7 +89,7 @@ div.input-split {
 }
 
 div.commonIngredientItem {
-  display: block;
+  display: inline-block;
   margin: 1em;
   padding: 1em 2em;
   width: 20em;

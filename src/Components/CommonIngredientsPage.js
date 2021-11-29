@@ -105,7 +105,9 @@ class CommonIngredientsPage extends Component {
       document.getElementById("commoningredients-input").value = '';
 
       this.setState( prevState => ({ 
-        items: [...prevState.items, newItem]
+        items: [...prevState.items, newItem],
+        input: "",
+        inputName: ""
       }), () => {
         this.findCommonIngredients()
       });
@@ -140,10 +142,9 @@ class CommonIngredientsPage extends Component {
   displayItem = (item) => {
     return (
       <div key={item.name} className="commonIngredientItem">
-        <div>
-          {item.name}
-          <button value={item.name} onClick={this.deleteItem}>delete</button>
-        </div>
+        <p>
+          {item.name} <button value={item.name} onClick={this.deleteItem}>delete</button>
+        </p>
         
         {/* <div>[{item.ingredients.join(", ")}]</div> */}
         
@@ -186,9 +187,6 @@ class CommonIngredientsPage extends Component {
           mapKeys.map((item) => this.commonIngredientsFormatter(item))}
         </div>
 
-        <div>
-          <button onClick={this.findCommonIngredients}>find common ingredients</button>
-        </div>
       </React.Fragment>
     );
   }
