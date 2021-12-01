@@ -15,11 +15,6 @@ class IngredientsMatchPage extends Component {
       leftInputName: "Item A",
       rightInputName: "Item B"
     };
-    this.itemFlagFormatter = this.itemFlagFormatter.bind(this);
-    this.convertStringToArray = this.convertStringToArray.bind(this);
-    this.drawLines = this.drawLines.bind(this);
-    this.handleLeftInput = this.handleLeftInput.bind(this);
-    this.handleRightInput = this.handleRightInput.bind(this);
   }
 
   componentDidMount() {
@@ -29,7 +24,7 @@ class IngredientsMatchPage extends Component {
     // });
   }
 
-  itemFlagFormatter(thisItem, flaggedItemsArray) {
+  itemFlagFormatter = (thisItem, flaggedItemsArray) => {
     for (let i = 0; i < flaggedItemsArray.length; i++) {
       if (thisItem.toLowerCase() === flaggedItemsArray[i].toLowerCase()) {
         //exact matches
@@ -43,7 +38,7 @@ class IngredientsMatchPage extends Component {
   }
 
 
-  convertStringToArray(listAsString) {
+  convertStringToArray = (listAsString) => {
     var replaceFullstop = listAsString.replaceAll('.', ' ');
     var split = replaceFullstop.split(","); 
     var trimmed = [];
@@ -62,21 +57,15 @@ class IngredientsMatchPage extends Component {
     this.setState({ rightInputName: event.target.value });
   }
 
-  handleLeftInput(event) {
+  handleLeftInput = (event) => {
     this.setState({ leftInputString: event.target.value });
   }
 
 
-  handleRightInput(event) {
+  handleRightInput = (event) => {
     this.setState({ rightInputString: event.target.value });
   }
 
-  drawLines() {
-    // var myLine = new LeaderLine(
-    //   document.getElementById('start'),
-    //   document.getElementById('destination')
-    // );
-  }
 
   render() {
     // var a = ["Sodium Chloride", "Sodium Citrate", "Citric Acid", "Sodium Laureth Sulfate", "Sodium Lauryl Sulfate", "fragrance"];
@@ -142,7 +131,6 @@ class IngredientsMatchPage extends Component {
               {a.map((key, index) => <div className="ingredients" id={"left" + index} >{key}</div>)}
             </div>
 
-            {/* TODO: Insert the lines after both div sides have been drawn */}
             <div className="ingredients-matching" id="canvas">
               
               {matchingIndex.map((key, index) => {

@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import './../App.css';
 
@@ -8,7 +7,6 @@ class SummaryView extends Component {
     this.state = {
     };
   }
-
 
   render() {
     var wanted = 0;

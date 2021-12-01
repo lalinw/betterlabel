@@ -13,14 +13,10 @@ class IngredientsTagPage extends Component {
       flaggedItemsString: "",
       flaggedItemsArray: [],
     };
-    this.convertStringToArray = this.convertStringToArray.bind(this);
-    this.handleInput = this.handleInput.bind(this);
-    this.handleWantedItems = this.handleWantedItems.bind(this);
-    this.handleFlaggedItems = this.handleFlaggedItems.bind(this);
   }
 
 
-  convertStringToArray(listAsString) {
+  convertStringToArray = (listAsString) => {
     var replaceFullstop = listAsString.replaceAll('.', ' ');
     var split = replaceFullstop.split(","); 
     var trimmed = [];
@@ -32,17 +28,17 @@ class IngredientsTagPage extends Component {
   }
 
 
-  handleInput(event) {
+  handleInput = (event) => {
     this.setState({ inputString: event.target.value });
   }
 
 
-  handleWantedItems(event) {
+  handleWantedItems = (event) => {
     this.setState({ wantedItemsString: event.target.value });
   }
 
 
-  handleFlaggedItems(event) {
+  handleFlaggedItems = (event) => {
     this.setState({ flaggedItemsString: event.target.value });
   }
 

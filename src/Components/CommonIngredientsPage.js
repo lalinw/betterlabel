@@ -83,7 +83,6 @@ class CommonIngredientsPage extends Component {
     
     console.log(rValue + "-" + gValue + "-" + bValue);
     var colorRGB = "rgb(" + rValue + ',' + gValue + ',' + bValue + ")";
-    console.log(colorRGB);
 
     return (
       <div className="ingredients commontooltip" style={{borderColor: "aliceblue", backgroundColor: colorRGB, width: "30em"}} title={i + " source item(s): " + this.state.ingredientsMap.get(thisItem).join(', ')}>
@@ -120,7 +119,6 @@ class CommonIngredientsPage extends Component {
 
   deleteItem = (event) => {
     var itemToDelete = event.currentTarget.value;
-    // console.log(itemToDelete);
     const newItemArray = this.state.items.filter((thisItem) => thisItem.name !== itemToDelete);
     this.setState({ 
       items: newItemArray 

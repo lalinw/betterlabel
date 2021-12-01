@@ -8,10 +8,10 @@ class ItemIngredients extends Component {
     super(props);
     this.state = {
     };
-    this.itemFlagFormatter = this.itemFlagFormatter.bind(this);
   }
 
-  itemFlagFormatter(thisItem) {
+
+  itemFlagFormatter = (thisItem) => {
     if (this.props.flaggedItemsArray !== undefined) {
       for (let i = 0; i < this.props.flaggedItemsArray.length; i++) {
         if (thisItem.toLowerCase() === this.props.flaggedItemsArray[i].toLowerCase()) {
