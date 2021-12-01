@@ -1,6 +1,8 @@
-# [BetterLabel](https://lalinw.github.io/betterlabel)
+# [BetterLabel™](https://lalinw.github.io/betterlabel)
 
-BetterLabel™ is a browser-based client-side only tool that can help make reading labels easier.
+BetterLabel™ is a browser-based client-side only tool that can help make reading labels easier. 
+
+It takes a __common-separated list__ as input for ingredient list(s). 
 
 ![betterlabel_intro2](https://user-images.githubusercontent.com/12365771/144217322-ca5264e5-0b83-49c4-9a64-ffb1417e7b55.gif)
 
