@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import SummaryView from './SummaryView';
 import ItemIngredients from './ItemIngredients'
 
+import Button from '@mui/material/Button';
+
 class IngredientsTagPage extends Component {
   constructor(props) {
     super(props);
@@ -47,7 +49,7 @@ class IngredientsTagPage extends Component {
 
     return (
       <React.Fragment>
-      <div className="input" id="input">
+      <div className="input input-wrapper" id="input">
       <textarea 
         id="textarea-input"
         placeholder="paste the list of ingredients here"
@@ -55,20 +57,28 @@ class IngredientsTagPage extends Component {
         ></textarea>
       </div>
       <div className="input-split" id="input-wanted">
-        <textarea 
-          id="textarea-input-wanted"
-          placeholder="paste wanted ingredients here"
-          onChange={this.handleWantedItems}
-          ></textarea>
+        <div className="input-wrapper wanted">
+          <textarea 
+            className="wanted"
+            id="textarea-input-wanted"
+            placeholder="paste wanted ingredients here"
+            onChange={this.handleWantedItems}
+            ></textarea>
+        </div>
       </div>
       <div className="input-split" id="input-flagged">
-        <textarea 
-          id="textarea-input-flagged"
-          placeholder="paste unwanted ingredients here"
-          onChange={this.handleFlaggedItems}
-          ></textarea>
+        <div className="input-wrapper flagged">
+          <textarea 
+            className="flagged"
+            id="textarea-input-flagged"
+            placeholder="paste unwanted ingredients here"
+            onChange={this.handleFlaggedItems}
+            ></textarea>
+        </div>
       </div>
-      <button
+      <Button
+        variant="contained" 
+        disableElevation
         className="compute-button"
         onClick={() => {
           if (this.state.inputString !== "") {
@@ -84,7 +94,7 @@ class IngredientsTagPage extends Component {
           }
           
         }}
-        >Tag my Ingredients</button>
+        >Tag my Ingredients</Button>
       <div className="result">
         <h3>Product Summary:</h3>
         <SummaryView

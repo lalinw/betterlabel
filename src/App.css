@@ -1,54 +1,111 @@
 /* ========================================= */
+
+body, input, textarea, Button {
+  font-family: 'Poppins', sans-serif;
+}
+
 #root {
   margin: 2em 4em;
 }
 
-input {
+input, textarea {
   width: 100%;
+  border-width: 0;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  background-color: #eeeeee;
 }
 
 textarea {
   width: 100%;
   height: 10em;
-  padding: 0;
-}
-
-#textarea-input-wanted {
-  display: inline-block;
-  background-color: rgba(113, 255, 57, 0.377);
-}
-
-#textarea-input-flagged {
-  display: inline-block;
-  background-color: rgba(255, 71, 71, 0.274);
 }
 
 #content{
   margin: 3em 0em;
 }
 
+/* ========================================= SHARED elements */
+
 .compute-button {
   width: 100%;
 }
 
-.input {
-  display: inline-block;
+Button.MuiButton-contained {
+  background-color: rgb(66, 147, 172);
 }
 
-#input {
-  width: 100%;
+Button.MuiButton-contained:hover {
+  background-color: rgb(9, 122, 156);
 }
 
-#input-wanted {
-  width: 50%;
-}
-
-#input-flagged {
-  width: 50%;
+.input-wrapper {
+  margin-bottom: 1em;
+  padding: 0.5em;
+  background-color: #eeeeee;
 }
 
 div.result{
   text-align: center;
+  margin-top: 5em;
+}
+
+div.ingredients {
+  margin: 0.5em auto;
+  text-align: center;
+  padding: 0.2em 1em;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: aliceblue;
+}
+
+div.input-split {
+  display: inline-block;
+  width: calc(50% - 1em);
+  margin: 0em 0.5em;
+}
+
+#navigation {
+  text-align: center;
+}
+
+#navigation Button {
+  width: 18em;
+  margin: 0.2em 1em;
+}
+
+Button.MuiButton-outlined {
+  color: rgb(66, 147, 172);
+  border: rgb(66, 147, 172);
+  font-weight: bold;
+}
+
+/* ========================================= Ingredients Tag Page */
+.wanted {
+  background-color: rgb(190,226,188);
+}
+
+.flagged {
+  background-color: rgb(236, 187, 187);
+}
+
+#textarea-input-wanted, #textarea-input-flagged {
+  display: inline-block;
+  padding: 0%;
+}
+
+#input-wanted, #input-flagged {
+  margin-bottom: 1em;
+}
+
+#textarea-input {
+  width: 100%;  
+}
+
+#input {
+  margin-left: 0.5em;
+  width: calc(100% - 2em);
 }
 
 .summary {
@@ -65,13 +122,8 @@ div.result{
   margin: 2em;
 }
 
-#stats-wanted {
-  background-color: rgba(113, 255, 57, 0.377);
-}
 
-#stats-flagged {
-  background: rgba(255, 71, 71, 0.274);
-}
+/* ========================================= Ingredients Matching Page */
 
 div#ingredients-list {
   display: inline-block;
@@ -79,14 +131,6 @@ div#ingredients-list {
   padding: 2em;
 }
 
-div.ingredients {
-  margin: 0.5em auto;
-  text-align: center;
-  padding: 0.2em 1em;
-  border-radius: 10px;
-  border-style: solid;
-  border-color: aliceblue;
-}
 
 div.ingredients-matching {
   vertical-align: top;
@@ -95,10 +139,7 @@ div.ingredients-matching {
   text-align: center;
 }
 
-div.input-split {
-  display: inline-block;
-  width: 50%;
-}
+/* ========================================= Common Ingredients Page */
 
 div.commonIngredientItem {
   display: inline-block;

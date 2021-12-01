@@ -38,12 +38,12 @@ class SummaryView extends Component {
               <h3>Total ingredients</h3>
               <h2>{this.props.inputArray.length}</h2>
             </div>
-            <div className="summary-stats" id="stats-wanted">
+            <div className="summary-stats wanted" id="stats-wanted">
               <h3>Desired ingredients</h3>
               <h2>{wanted}</h2> 
               <p>out of {this.props.wantedItemsArray.length} found</p>
             </div>
-            <div className="summary-stats" id="stats-flagged">
+            <div className="summary-stats flagged" id="stats-flagged">
               <h3>Flagged ingredients</h3>
               <h2>{flagged}</h2>
               <p>out of {this.props.flaggedItemsArray.length} flagged</p>

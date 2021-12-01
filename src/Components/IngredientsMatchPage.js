@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import Xarrow from 'react-xarrows';
 import './../App.css';
 
+import Button from '@mui/material/Button';
+
 
 class IngredientsMatchPage extends Component {
   constructor(props) {
@@ -87,30 +89,40 @@ class IngredientsMatchPage extends Component {
         <div>
           
         <div className="input-split">  
-          <input
-            id="itemmMatch-left-name"
-            placeholder="item name"
-            onChange={this.handleLeftInputName}
-            ></input>
-          <textarea 
-              id="itemmMatch-left"
-              placeholder="paste the list of ingredients here"
-              onChange={this.handleLeftInput}
-              ></textarea>
+          <div className="input-wrapper">
+            <input
+              id="itemMatch-left-name"
+              placeholder="item name"
+              onChange={this.handleLeftInputName}
+              ></input>
+          </div>    
+          <div className="input-wrapper">
+            <textarea 
+                id="itemMatch-left"
+                placeholder="paste the list of ingredients here"
+                onChange={this.handleLeftInput}
+                ></textarea>
+          </div>
         </div>
         <div className="input-split">
-          <input
-            id="itemmMatch-right-name"
-            placeholder="item name"
-            onChange={this.handleRightInputName}
-            ></input>
-          <textarea 
-            id="itemmMatch-right"
-            placeholder="paste the list of ingredients here"
-            onChange={this.handleRightInput}
-            ></textarea>
+          <div className="input-wrapper">
+            <input
+              id="itemMatch-right-name"
+              placeholder="item name"
+              onChange={this.handleRightInputName}
+              ></input>
+          </div>
+          <div className="input-wrapper">
+            <textarea 
+              id="itemMatch-right"
+              placeholder="paste the list of ingredients here"
+              onChange={this.handleRightInput}
+              ></textarea>
+          </div>
         </div>
-        <button
+        <Button
+          variant="contained"
+          disableElevation
           className="compute-button"
           onClick={() => {
             if (this.state.leftInputString !== "" && this.state.rightInputString) {
@@ -123,7 +135,7 @@ class IngredientsMatchPage extends Component {
             }
             
           }}
-          >Match product ingredients</button>
+          >Match product ingredients</Button>
 
           <div className="result">
             <div className="ingredients-matching" id="left" >

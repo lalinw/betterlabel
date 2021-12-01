@@ -5,6 +5,10 @@ import IngredientsTagPage from './Components/IngredientsTagPage';
 import AboutPage from './Components/AboutPage';
 import CommonIngredientsPage from './Components/CommonIngredientsPage';
 
+// Material UI
+import Button from '@mui/material/Button';
+import InfoIcon from '@mui/icons-material/Info';
+
 class App extends Component {
   constructor() {
     super();
@@ -30,31 +34,40 @@ class App extends Component {
     return (
       <React.Fragment>
         <div><h1>BetterLabel™</h1></div>
-        <div id="">
-          <button 
+        <div id="navigation">
+          <Button 
+            variant="outlined"
+            disableElevation
+            startIcon={<InfoIcon/>}
             disabled={this.state.pageAbout}
             onClick={() => {
             this.pageDisplayReset();
             this.setState({ pageAbout: true });
-          }}>About</button>
-          <button 
+          }}>About</Button>
+          <Button 
+            variant="outlined"
+            disableElevation
             disabled={this.state.pageTag}
             onClick={() => {
             this.pageDisplayReset();
             this.setState({ pageTag: true });
-          }}>Tag my Ingredients</button>
-          <button 
+          }}>Tag my Ingredients</Button>
+          <Button 
+            variant="outlined"
+            disableElevation
             disabled={this.state.pageMatch}
             onClick={() => {
             this.pageDisplayReset();
             this.setState({ pageMatch: true });
-          }}>Compare Products</button>
-          <button 
+          }}>Compare Products</Button>
+          <Button 
+            variant="outlined"
+            disableElevation
             disabled={this.state.pageCommon}
             onClick={() => {
             this.pageDisplayReset();
             this.setState({ pageCommon: true });
-          }}>Find Common Ingredients</button>
+          }}>Find Common Ingredients</Button>
         </div>
         <div id="content">
           {this.state.pageAbout && <AboutPage/>}

@@ -1,6 +1,9 @@
 
 import React, { Component } from 'react';
 import './../App.css';
+import Button from '@mui/material/Button';
+import AddIcon from '@mui/icons-material/Add';
+import IconButton from '@mui/material/IconButton';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 
@@ -144,7 +147,11 @@ class CommonIngredientsPage extends Component {
         <div style={{display: "inline-block", width: "90%", overflowWrap: "break-word", verticalAlign: "top"}}>
           {item.name} 
         </div>
-        <div style={{display: "inline-block", width: "10%"}}><button value={item.name} onClick={this.deleteItem}><HighlightOffIcon/></button></div>
+        <div style={{display: "inline-block", width: "10%"}}>
+          <IconButton aria-label="delete" value={item.name} onClick={this.deleteItem}>
+            <HighlightOffIcon/>
+          </IconButton>
+        </div>
         
         {/* <div>[{item.ingredients.join(", ")}]</div> */}
         
@@ -162,20 +169,28 @@ class CommonIngredientsPage extends Component {
         </div>
           
         <div>
-          <input
-            id="commoningredients-name"
-            placeholder="item name"
-            onChange={this.handleInputName}
-            ></input>
-          <textarea 
-            id="commoningredients-input"
-            placeholder="place list of ingredients"
-            onChange={this.handleInput}
-            ></textarea>
-          <button 
+          <div className="input-wrapper">
+            <input
+              id="commoningredients-name"
+              placeholder="item name"
+              onChange={this.handleInputName}
+              ></input>
+          </div>
+          <div className="input-wrapper">
+            <textarea 
+              id="commoningredients-input"
+              placeholder="place list of ingredients"
+              onChange={this.handleInput}
+              ></textarea>
+          </div>
+          <Button 
+            variant="contained" 
+            disableElevation
+            startIcon={<AddIcon />}
             className="compute-button"
-            onClick={this.addItem}
-            >Add this Item</button>
+            onClick={this.addItem}>
+            Add this item
+          </Button>
         </div>
         
         <div className="result">
