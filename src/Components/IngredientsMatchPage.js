@@ -11,8 +11,9 @@ class IngredientsMatchPage extends Component {
       leftInputString: "",
       leftInputArray: [],
       rightInputString: "",
-      rightInputArray: []
-
+      rightInputArray: [],
+      leftInputName: "Item A",
+      rightInputName: "Item B"
     };
     this.itemFlagFormatter = this.itemFlagFormatter.bind(this);
     this.convertStringToArray = this.convertStringToArray.bind(this);
@@ -53,6 +54,13 @@ class IngredientsMatchPage extends Component {
     return trimmed;
   }
 
+  handleLeftInputName = (event) => {
+    this.setState({ leftInputName: event.target.value });
+  }
+
+  handleRightInputName = (event) => {
+    this.setState({ rightInputName: event.target.value });
+  }
 
   handleLeftInput(event) {
     this.setState({ leftInputString: event.target.value });
@@ -90,6 +98,11 @@ class IngredientsMatchPage extends Component {
         <div>
           
         <div className="input-split">  
+          <input
+            id="itemmMatch-left-name"
+            placeholder="item name"
+            onChange={this.handleLeftInputName}
+            ></input>
           <textarea 
               id="itemmMatch-left"
               placeholder="paste the list of ingredients here"
@@ -97,6 +110,11 @@ class IngredientsMatchPage extends Component {
               ></textarea>
         </div>
         <div className="input-split">
+          <input
+            id="itemmMatch-right-name"
+            placeholder="item name"
+            onChange={this.handleRightInputName}
+            ></input>
           <textarea 
             id="itemmMatch-right"
             placeholder="paste the list of ingredients here"
@@ -104,24 +122,29 @@ class IngredientsMatchPage extends Component {
             ></textarea>
         </div>
         <button
+          className="compute-button"
           onClick={() => {
             if (this.state.leftInputString !== "" && this.state.rightInputString) {
               this.setState({
                 leftInputArray: this.convertStringToArray(this.state.leftInputString),
                 rightInputArray: this.convertStringToArray(this.state.rightInputString)
               });
+            } else {
+              alert("Remember to input 2 ingredients lists");
             }
             
           }}
           >Match product ingredients</button>
 
-          <div>
+          <div className="result">
             <div className="ingredients-matching" id="left" >
+              {matchingIndex.length > 0 && <h2>{this.state.leftInputName}</h2>}
               {a.map((key, index) => <div className="ingredients" id={"left" + index} >{key}</div>)}
             </div>
 
             {/* TODO: Insert the lines after both div sides have been drawn */}
             <div className="ingredients-matching" id="canvas">
+              
               {matchingIndex.map((key, index) => {
                 if (key !== -1) {
                   return <Xarrow start={"left" + index} end={"right" + key} 
@@ -132,18 +155,15 @@ class IngredientsMatchPage extends Component {
                             headSize="0"
                           />;
                 }
-                return 0;
+                return null;
               })}
             </div>
             
             <div className="ingredients-matching" id="right" >
+            {matchingIndex.length > 0 && <h2>{this.state.rightInputName}</h2>}
               {b.map((key, index) => <div className="ingredients" id={"right" + index} >{key}</div>)}
             </div>
           </div>
-          
-          {/* {matchingIndex.map(i => <div>{i}</div>)} */}
-
-
 
         </div>
       </React.Fragment>

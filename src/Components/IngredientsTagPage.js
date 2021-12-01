@@ -6,7 +6,7 @@ class IngredientsTagPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      c: "",
+      inputString: "",
       inputArray: [],
       wantedItemsString: "",
       wantedItemsArray: [],
@@ -73,17 +73,22 @@ class IngredientsTagPage extends Component {
           ></textarea>
       </div>
       <button
-          onClick={() => {
-            if (this.state.inputString !== "") {
-              this.setState({
-                inputArray: this.convertStringToArray(this.state.inputString),
-                wantedItemsArray: this.convertStringToArray(this.state.wantedItemsString),
-                flaggedItemsArray: this.convertStringToArray(this.state.flaggedItemsString)
-              });
+        className="compute-button"
+        onClick={() => {
+          if (this.state.inputString !== "") {
+            this.setState({ inputArray: this.convertStringToArray(this.state.inputString) });
+            if (this.state.wantedItemsString !== "") {
+              this.setState({ wantedItemsArray: this.convertStringToArray(this.state.wantedItemsString) });
             }
-            
-          }}
-          >Tag my Ingredients</button>
+            if (this.state.flaggedItemsString !== "") {
+              this.setState({ flaggedItemsArray: this.convertStringToArray(this.state.flaggedItemsString) });
+            }
+          } else {
+            alert("Remember to input an ingredients list");
+          }
+          
+        }}
+        >Tag my Ingredients</button>
       <div className="result">
         <h3>Product Summary:</h3>
         <SummaryView

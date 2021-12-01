@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import './../App.css';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 
 class CommonIngredientsPage extends Component {
@@ -142,9 +143,10 @@ class CommonIngredientsPage extends Component {
   displayItem = (item) => {
     return (
       <div key={item.name} className="commonIngredientItem">
-        <p>
-          {item.name} <button value={item.name} onClick={this.deleteItem}>delete</button>
-        </p>
+        <div style={{display: "inline-block", width: "90%", overflowWrap: "break-word", verticalAlign: "top"}}>
+          {item.name} 
+        </div>
+        <div style={{display: "inline-block", width: "10%"}}><button value={item.name} onClick={this.deleteItem}><HighlightOffIcon/></button></div>
         
         {/* <div>[{item.ingredients.join(", ")}]</div> */}
         
@@ -173,6 +175,7 @@ class CommonIngredientsPage extends Component {
             onChange={this.handleInput}
             ></textarea>
           <button 
+            className="compute-button"
             onClick={this.addItem}
             >Add this Item</button>
         </div>
