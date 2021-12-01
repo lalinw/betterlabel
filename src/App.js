@@ -1,100 +1,80 @@
 import React, { Component } from 'react';
 import './App.css';
-import ItemIngredients from './Components/ItemIngredients';
+import IngredientsMatchPage from './Components/IngredientsMatchPage';
+import IngredientsTagPage from './Components/IngredientsTagPage';
+import AboutPage from './Components/AboutPage';
+import CommonIngredientsPage from './Components/CommonIngredientsPage';
+
+// Material UI
+import Button from '@mui/material/Button';
+import InfoIcon from '@mui/icons-material/Info';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      inputString: "",
-      inputArray: [],
-      flaggedItemsString: "",
-      flaggedItemsArray: ["Sodium Chloride", "Sodium Citrate", "Citric Acid", "Sodium Laureth Sulfate", "Sodium Lauryl Sulfate", "fragrance"]
+      pageAbout: true,
+      pageTag: false,
+      pageMatch: false,
+      pageCommon: false      
     };
-    // this.itemFlagFormatter = this.itemFlagFormatter.bind(this);
-    this.convertStringToArray = this.convertStringToArray.bind(this);
-    this.handleInput = this.handleInput.bind(this);
-    this.handleFlaggedInput = this.handleFlaggedInput.bind(this);
   }
 
-
-  // itemFlagFormatter(thisItem, flaggedItems) {
-  //   for (let i = 0; i < flaggedItems.length; i++) {
-  //     if (thisItem.toLowerCase() == flaggedItems[i].toLowerCase()) {
-  //       return <div style={{backgroundColor: "lightblue", borderColor: "red", borderStyle: "solid"}}>{thisItem}</div>;
-  //     }
-  //   }
-  //   return <div>{thisItem}</div>;
-  // }
-
-  convertStringToArray(listAsString) {
-    var replaceFullstop = listAsString.replaceAll('.', ' ');
-    var split = replaceFullstop.split(","); 
-    var trimmed = [];
-
-    for (let i = 0; i < split.length; i++) {
-      trimmed.push(split[i].trim());
-    }
-    return trimmed;
-  }
-
-  handleInput(event) {
+  pageDisplayReset = () => {
     this.setState({
-      inputString: event.target.value
+      pageAbout: false,
+      pageTag: false,
+      pageMatch: false,
+      pageCommon: false  
     });
-  }
-
-  handleFlaggedInput(event) {
-    this.setState({
-      flaggedItemsString: event.target.value
-    });
-    
   }
 
   render() {
+    
     return (
       <React.Fragment>
-        <div>Better Labels</div>
-        <textarea 
-          rows="8"
-          cols="80"
-          name="ingredients-input" 
-          placeholder="paste the list of ingredients here"
-          onChange={this.handleInput}
-          ></textarea>
-          <br/>
-        <button
-          onClick={() => {
-            this.setState({
-              inputArray: this.convertStringToArray(this.state.inputString)
-            });
-          }}
-          >better the labels</button>
-        <br/>
-        <br/>
-        <textarea 
-          rows="4"
-          cols="80"
-          name="ingredients-input" 
-          placeholder="paste unwanted ingredients here"
-          onChange={this.handleFlaggedInput}
-          ></textarea>
-          <br/>
-        <button
-          onClick={() => {
-            if (this.state.flaggedItemsString != "") {
-              this.setState({
-                flaggedItemsArray: this.convertStringToArray(this.state.flaggedItemsString)
-              });
-            }
-            
-          }}
-          >tag unwanted ingredients</button>
-        <br/>
-        <ItemIngredients
-          inputArray = {this.state.inputArray}
-          flaggedItemsArray = {this.state.flaggedItemsArray}
-        />
+        <div><h1>BetterLabel™</h1></div>
+        <div id="navigation">
+          <Button 
+            variant="outlined"
+            disableElevation
+            startIcon={<InfoIcon/>}
+            disabled={this.state.pageAbout}
+            onClick={() => {
+            this.pageDisplayReset();
+            this.setState({ pageAbout: true });
+          }}>About</Button>
+          <Button 
+            variant="outlined"
+            disableElevation
+            disabled={this.state.pageTag}
+            onClick={() => {
+            this.pageDisplayReset();
+            this.setState({ pageTag: true });
+          }}>Tag my Ingredients</Button>
+          <Button 
+            variant="outlined"
+            disableElevation
+            disabled={this.state.pageMatch}
+            onClick={() => {
+            this.pageDisplayReset();
+            this.setState({ pageMatch: true });
+          }}>Compare Products</Button>
+          <Button 
+            variant="outlined"
+            disableElevation
+            disabled={this.state.pageCommon}
+            onClick={() => {
+            this.pageDisplayReset();
+            this.setState({ pageCommon: true });
+          }}>Find Common Ingredients</Button>
+        </div>
+        <div id="content">
+          {this.state.pageAbout && <AboutPage/>}
+          {this.state.pageTag && <IngredientsTagPage/>}
+          {this.state.pageMatch && <IngredientsMatchPage/>}
+          {this.state.pageCommon && <CommonIngredientsPage/>}
+        </div>
       </React.Fragment>
     );
   }
