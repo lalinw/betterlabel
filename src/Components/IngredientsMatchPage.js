@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 import Xarrow from 'react-xarrows';
 import './../App.css';
 
+//Material UI
 import Button from '@mui/material/Button';
+import RouteIcon from '@mui/icons-material/Route';
 
 
 class IngredientsMatchPage extends Component {
@@ -123,6 +125,7 @@ class IngredientsMatchPage extends Component {
         <Button
           variant="contained"
           disableElevation
+          startIcon={<RouteIcon/>}
           className="compute-button"
           onClick={() => {
             if (this.state.leftInputString !== "" && this.state.rightInputString) {
