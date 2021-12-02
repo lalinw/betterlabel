@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import SummaryView from './SummaryView';
 import ItemIngredients from './ItemIngredients'
 
+//Material UI
 import Button from '@mui/material/Button';
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 
 class IngredientsTagPage extends Component {
   constructor(props) {
@@ -79,6 +81,7 @@ class IngredientsTagPage extends Component {
       <Button
         variant="contained" 
         disableElevation
+        startIcon={<LocalOfferIcon/>}
         className="compute-button"
         onClick={() => {
           if (this.state.inputString !== "") {
@@ -94,7 +97,7 @@ class IngredientsTagPage extends Component {
           }
           
         }}
-        >Tag my Ingredients</Button>
+        >Tag Ingredients</Button>
       <div className="result">
         <h3>Product Summary:</h3>
         <SummaryView
