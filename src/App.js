@@ -38,7 +38,7 @@ class App extends Component {
     
     return (
       <React.Fragment>
-        <div><h1>BetterLabel™</h1></div>
+        <div><h1>BetterLabel</h1></div>
         <div id="navigation">
           <Button 
             variant="outlined"
